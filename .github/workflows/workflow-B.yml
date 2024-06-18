@@ -18,7 +18,7 @@ jobs:
         with:
           script: |
             const workflowName = process.env.GITHUB_WORKFLOW;
-            const jobName = process.env.JOB_NAME;
+            const jobName = github.job;
             const eventName = 'github.context.event_name';
             const contextName = `${workflowName} / ${jobName} (${eventName})`;
 
