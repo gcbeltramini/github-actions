@@ -1,0 +1,14 @@
+name: Workflow B
+
+on:
+  workflow_run:
+    workflows: ["Workflow A"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run dependent task
+        run: echo "Running some task in Workflow B after Workflow A completes"
