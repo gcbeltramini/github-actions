@@ -17,6 +17,35 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           script: |
+            try {
+                // Access the GitHub context
+                const context = github.context;
+            
+                // Log the context to explore its content
+                console.log('GitHub Context:', JSON.stringify(context, null, 2));
+            
+                // Log specific variables
+                console.log('Event Name:', context.eventName);
+                console.log('Job:', context.job);
+                console.log('Workflow:', context.workflow);
+                console.log('Action:', context.action);
+                console.log('Actor:', context.actor);
+                console.log('Repository:', context.repo.repo);
+                console.log('Owner:', context.repo.owner);
+            
+                // Access specific environment variables
+                console.log('GitHub Ref:', process.env.GITHUB_REF);
+                console.log('GitHub SHA:', process.env.GITHUB_SHA);
+                console.log('GitHub Actor:', process.env.GITHUB_ACTOR);
+                console.log('GitHub Workflow:', process.env.GITHUB_WORKFLOW);
+                console.log('GitHub Action:', process.env.GITHUB_ACTION);
+                console.log('GitHub Job:', process.env.GITHUB_JOB);
+            
+              } catch (error) {
+                core.setFailed(`Action failed with error: ${error}`);
+              }
+            }
+
             const workflowName = process.env.GITHUB_WORKFLOW;
             const jobName = github.job;
             const eventName = 'github.context.event_name';
