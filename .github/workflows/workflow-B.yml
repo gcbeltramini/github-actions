@@ -17,16 +17,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           script: |
-            console.log('GitHub Context:', JSON.stringify(github.context, null, 2));            
-            console.log('GitHub Ref:', process.env.GITHUB_REF);
-            console.log('GitHub SHA:', process.env.GITHUB_SHA);
-            console.log('GitHub Actor:', process.env.GITHUB_ACTOR);
-            console.log('GitHub Workflow:', process.env.GITHUB_WORKFLOW);
-            console.log('GitHub Action:', process.env.GITHUB_ACTION);
-            console.log('GitHub Job:', process.env.GITHUB_JOB);
-
             const workflowName = process.env.GITHUB_WORKFLOW;
-            const jobName = github.job;
+            const jobName = process.env.GITHUB_JOB;
             const eventName = 'github.context.event_name';
             const contextName = `${workflowName} / ${jobName} (${eventName})`;
 
@@ -52,7 +44,7 @@ jobs:
         with:
           script: |
             const workflowName = process.env.GITHUB_WORKFLOW;
-            const jobName = job.name;
+            const jobName = process.env.GITHUB_JOB;
             const eventName = github.context.event_name;
             const contextName = `${workflowName} / ${jobName} (${eventName})`;
 
@@ -73,7 +65,7 @@ jobs:
         with:
           script: |
             const workflowName = process.env.GITHUB_WORKFLOW;
-            const jobName = job.name;
+            const jobName = process.env.GITHUB_JOB;
             const eventName = github.context.event_name;
             const contextName = `${workflowName} / ${jobName} (${eventName})`;
 
