@@ -32,13 +32,11 @@ jobs:
             core.setOutput('status_id', response.data.id);
       - name: Run dependent task
         run: echo "Running some task in Workflow B after Workflow A completes successfully."
-      - name: This step will fail
-        run: exit 1
+      # - name: This step will fail
+      #   run: exit 1
       - name: Update status to success
         if: success()
         uses: actions/github-script@v7
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         with:
           script: |
             const workflowName = process.env.GITHUB_WORKFLOW;
@@ -58,8 +56,6 @@ jobs:
       - name: Update status to failure
         if: failure()
         uses: actions/github-script@v7
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         with:
           script: |
             const workflowName = process.env.GITHUB_WORKFLOW;
