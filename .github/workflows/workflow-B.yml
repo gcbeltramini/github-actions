@@ -19,7 +19,7 @@ jobs:
           script: |
             const workflowName = process.env.GITHUB_WORKFLOW;
             const jobName = process.env.JOB_NAME;
-            const eventName = github.context.eventName;
+            const eventName = github.event_name;
             const contextName = `${workflowName} / ${jobName} (${eventName})`;
 
             const response = await github.rest.repos.createCommitStatus({
@@ -45,7 +45,7 @@ jobs:
           script: |
             const workflowName = process.env.GITHUB_WORKFLOW;
             const jobName = process.env.JOB_NAME;
-            const eventName = github.context.eventName;
+            const eventName = github.context.event_name;
             const contextName = `${workflowName} / ${jobName} (${eventName})`;
 
             await github.rest.repos.createCommitStatus({
