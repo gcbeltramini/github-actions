@@ -2,13 +2,14 @@ name: Workflow B
 
 on:
   workflow_run:
-    workflows: [Workflow-A]
+    workflows: ["Workflow A"]
     types:
       - completed
 
 jobs:
-  build:
+  my-job-B:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Run dependent task
-        run: echo "Running some task in Workflow B after Workflow A completes"
+        run: echo "Running some task in Workflow B after Workflow A completes successfully."
