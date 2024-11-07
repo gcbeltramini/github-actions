@@ -15,7 +15,11 @@ jobs:
           print(f"Python version: '{platform.python_version()}'")
           print(f"Python executable path: '{sys.executable}'")
 
-          x = ${{ toJson(steps) }}
-          print(type(x))
-          print(x)
+          job = ${{ toJson(job) }}
+          print(f"type of 'job' = '{type(job)}'")
+          print("job:", job)
+
+          steps = ${{ toJson(steps) }}
+          print(f"type of 'steps' = '{type(steps)}'")
+          print("Steps:", steps)
           EOF
