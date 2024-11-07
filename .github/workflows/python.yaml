@@ -1,0 +1,16 @@
+on: push
+
+name: python
+
+jobs:
+  python-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Context
+        run: |
+          #!/usr/bin/env python3
+          import platform
+          import sys
+
+          print(f"Python version: '{platform.python_version()}'")
+          print(f"Python executable path: '{sys.executable}'")
